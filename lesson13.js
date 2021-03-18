@@ -38,4 +38,3 @@ switch (num) {
         console.log('Not now');
         break;
 }
-

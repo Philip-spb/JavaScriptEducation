@@ -1,35 +1,43 @@
-// Методы
-
-// Работа со строками
+// Функции
 
 'use strict';
 
-console.dir(Number);  // Посмотреть все методы объекта Number
+let num = 20;
 
-const str = "test";
+function showFirstMessage(text) {
+    console.log(text);
+    num = 10;
+}
 
-console.log(str.toUpperCase());
-console.log(str[2]);
+showFirstMessage('Hello, JS!');
+console.log(num);
 
-const fruit = "Some fruit";
+function calc(a, b) {
+    return (a + b);
+}
 
-console.log(fruit.indexOf('fruit'));  // Получим 5
+console.log(calc(10,12));
 
-const logg = "Hello, World";
+function ret() {
+    let num = 50;
+    return num;
+}
 
-const startWorld = logg.indexOf('World');
-const lenLogg = logg.length;
+const anotherNum = ret();
+console.log(anotherNum);
 
-console.log(logg.slice(startWorld, lenLogg));  // Отрицательные значения отсчитываются с конца строки
+const logger = function() {
+    // Данную функццию можно использовать только после её объявления
+    console.log('Hello, function expression!');
+};
 
-console.log(logg.substr(startWorld, 2));  // Вторым аргументом указываем сколько символов нам необходимо вырезать
+logger();
 
-// Работа с числами
-// Для работы с числами используется стандартная бибблиотека  Math
+// Можно записывать без фигурных скобок
+// const newCalc = (a,b) => a + b;
 
+const newCalc = (a,b) => { 
+    return a + b; 
+};
 
-const num = 2.2;
-console.log(Math.round(num));
-
-const test = "12.2px";
-console.log(parseInt(test));  // Можно также использовать parseFloat
+console.log(newCalc(2,3));

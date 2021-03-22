@@ -36,6 +36,8 @@ console.log(products.join('; '));
 
 
 const numberArr = [2, 13, 26, 8, 10];
+numberArr.sort(compareNum);
+console.log(numberArr);
 
 function compareNum(a, b) {
     return a - b;

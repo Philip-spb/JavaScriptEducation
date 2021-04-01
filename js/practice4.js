@@ -107,5 +107,5 @@ const personalMovieDB = {
 
 // personalMovieDB.writeYourGenres();
 
-// personalMovieDB.toggleVisibleMyDB();
+personalMovieDB.toggleVisibleMyDB();
 // personalMovieDB.showMyDB();

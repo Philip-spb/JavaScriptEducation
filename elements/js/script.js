@@ -1,3 +1,5 @@
+// Получение элементов на странице и работас ними
+
 'use strict';
 
 // const { wrap } = require("module");

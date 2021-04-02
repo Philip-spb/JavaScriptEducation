@@ -22,7 +22,7 @@ const hearts = document.querySelectorAll('.heart');
 //     console.log(item);
 // });
 
-// Этот метод получает первый элемент по селлеатору на странице
+// Этот метод получает первый элемент по селлектору на странице
 const oneHeart = document.querySelector('.heart');
 // console.log(oneHeart);
 

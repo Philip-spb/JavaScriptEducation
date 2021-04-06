@@ -17,7 +17,7 @@ P.S. Здесь есть несколько вариантов решения з
 
 'use strict';
 
-// 'DOMContentLoaded' – Это событие которое сробатывает когда вся DOM структура страницы уже загружена
+// 'DOMContentLoaded' – Это событие которое срабатывает когда вся DOM структура страницы уже загружена
 
 document.addEventListener('DOMContentLoaded', () => {
 

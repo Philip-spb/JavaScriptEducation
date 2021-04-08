@@ -1,3 +1,5 @@
+// classList и Делегирование
+
 const btns = document.querySelectorAll('button');
 const wrapper = document.querySelector('.btn-block');
 

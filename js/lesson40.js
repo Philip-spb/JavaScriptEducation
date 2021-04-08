@@ -1,6 +1,6 @@
-'use strict';
+// Работа с датами
 
-const now = new Date();
+'use strict';
 
 // console.log(now.setDate(18));
 

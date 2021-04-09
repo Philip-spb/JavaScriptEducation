@@ -101,4 +101,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
 
+    // Modal
+
+    const body = document.body;
+    // const modalButtons = document.querySelectorAll('[data-modal]');
+    const modalWindow = document.querySelector('.modal');
+    const modalClose = document.querySelector('[data-close]');
+
+    body.addEventListener('click', (e) => {
+        if (e.target && e.target.dataset.modal == "") {
+            modalWindow.classList.add('show');
+            modalWindow.classList.remove('hide');
+            document.body.style.overflow = 'hidden';  // Не позволяем прокручиваться сайту пока открыто окно
+        }
+    });
+
+    function closeModal() {
+        modalWindow.classList.add('hide');
+        modalWindow.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', () => {
+        closeModal();
+    });
+
+
+    // Реализуем возможность закрытия модального окна при клике на подложку
+    modalWindow.addEventListener('click', (e) => {
+        if (e.target == modalWindow) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === "Escape" && modalWindow.classList.contains('show')) {
+            closeModal();
+        }
+    });
+
 });

@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    const deadline = '2021-04-09';
+    const deadline = '2021-12-09';
 
     function getTimeRemaining(endtime) {
         // endtime – время окончания акции
@@ -108,19 +108,24 @@ window.addEventListener('DOMContentLoaded', () => {
     const modalWindow = document.querySelector('.modal');
     const modalClose = document.querySelector('[data-close]');
 
-    body.addEventListener('click', (e) => {
-        if (e.target && e.target.dataset.modal == "") {
-            modalWindow.classList.add('show');
-            modalWindow.classList.remove('hide');
-            document.body.style.overflow = 'hidden';  // Не позволяем прокручиваться сайту пока открыто окно
-        }
-    });
+    function openModal() {
+        modalWindow.classList.add('show');
+        modalWindow.classList.remove('hide');
+        document.body.style.overflow = 'hidden';  // Не позволяем прокручиваться сайту пока открыто окно
+        clearInterval(modalTimerId);  // Не позволяем модельному окну появиться еще раз если пользователь на него уже заходил
+    }
 
     function closeModal() {
         modalWindow.classList.add('hide');
         modalWindow.classList.remove('show');
         document.body.style.overflow = '';
     }
+
+    body.addEventListener('click', (e) => {
+        if (e.target && e.target.dataset.modal == "") {
+            openModal();
+        }
+    });
 
     modalClose.addEventListener('click', () => {
         closeModal();
@@ -139,5 +144,21 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // Реализуем запуск модального окна через 15 секунд после входа
+
+    const modalTimerId = setTimeout(openModal, 30000);
+
+    // Реализуем функционал показа модального окна при прокрутке до низа страницы
+
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll);
+        }
+
+    }
+
+    window.addEventListener('scroll', showModalByScroll);
 
 });

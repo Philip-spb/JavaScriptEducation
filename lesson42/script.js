@@ -16,7 +16,13 @@ console.log(width, height);
 
 btn.addEventListener('click', () => {
     // box.style.height = box.scrollHeight + "px";
-    console.log(box.scrollTop);  // Определяем сколько пикселей мы уже пролистали
+    // console.log(box.scrollTop);  // Определяем сколько пикселей мы уже пролистали
+    const moveUpInterval = setInterval(() => {
+        document.documentElement.scrollTop -= 150;
+        if (document.documentElement.scrollTop <= 0) {
+            clearInterval(moveUpInterval);
+        }
+    }, 4);
 });
 
 console.log(box.getBoundingClientRect().top);

@@ -291,9 +291,6 @@ window.addEventListener('DOMContentLoaded', () => {
             // form.append(statusMessage);
             form.insertAdjacentElement('afterend', statusMessage);
 
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-
             // // request.setRequestHeader('Content-type', 'multipart/form-data');
             // // Когда мы работаем с FormData заголовок указывать не нужно
             // const formData = new FormData(form);
@@ -313,7 +310,7 @@ window.addEventListener('DOMContentLoaded', () => {
             //     }
             // });
 
-            request.setRequestHeader('Content-type', 'application/json');
+            // request.setRequestHeader('Content-type', 'application/json');
 
             const formData = new FormData(form);
 
@@ -325,22 +322,25 @@ window.addEventListener('DOMContentLoaded', () => {
                 object[key] = value;
             });
 
-            const json = JSON.stringify(object);
-
-            request.send(json);
-
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
-                    console.log(request.response);
+            fetch('server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'multipart/form-data'
+                },
+                body: JSON.stringify(object)
+            })
+                .then(data => data.text())
+                .then(data => {
+                    console.log(data);
                     showThanksModal(message.success);
-                    form.reset();
                     statusMessage.remove();
-                } else {
+                })
+                .catch(() => {
                     showThanksModal(message.failure);
-                }
-            });
-
-
+                })
+                .finally(() => {
+                    form.reset();
+                });
         });
     }
 

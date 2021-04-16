@@ -48,6 +48,8 @@ const test = (time) => {
 //     console.log('2000ms');
 // });
 
-Promise.all([test(1000), test(2000)]).then(()=>{
-    
+// Метод all необходим для того чтобы проверить выполнение всех условий
+
+Promise.race([test(1000), test(2000)]).then(() => {
+    console.log('Test');
 });

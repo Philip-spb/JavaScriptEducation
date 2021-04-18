@@ -397,4 +397,72 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
+    // Slider
+
+    const slidersWrapper = document.querySelector('.offer__slider-wrapper');
+    const sliders = slidersWrapper.querySelectorAll('.offer__slide');
+    const totalSlidersLabel = document.querySelector('.offer__slider-counter #total');
+    const currenSliderLabel = document.querySelector('.offer__slider-counter #current');
+    const prevSlider = document.querySelector('.offer__slider-prev');
+    const nexSlider = document.querySelector('.offer__slider-next');
+    const totalSliders = sliders.length;
+    let currentSlider = 1;
+
+    function showCurrentSlider() {
+        sliders[currentSlider - 1].classList.remove('hide');
+        sliders[currentSlider - 1].classList.add('show');
+    }
+
+    function hideCurrentSlider() {
+        sliders[currentSlider - 1].classList.remove('show');
+        sliders[currentSlider - 1].classList.add('hide');
+    }
+
+    nexSlider.addEventListener('click', () => {
+        hideCurrentSlider();
+        if (currentSlider === totalSliders) {
+            currentSlider = 1;
+        } else {
+            currentSlider++;
+        }
+        setCurrentSliderLabel();
+        showCurrentSlider();
+    });
+
+    prevSlider.addEventListener('click', () => {
+        hideCurrentSlider();
+        if (currentSlider === 1) {
+            currentSlider = totalSliders;
+        } else {
+            currentSlider--;
+        }
+        setCurrentSliderLabel();
+        showCurrentSlider();
+    });
+
+    function setCurrentSliderLabel() {
+        currenSliderLabel.textContent = (currentSlider >= 10) ? currentSlider : '0' + currentSlider;
+    }
+
+    totalSlidersLabel.textContent = (totalSliders >= 10) ? totalSliders : '0' + totalSliders;
+    setCurrentSliderLabel();
+
+
+    sliders.forEach(slider => {
+        slider.classList.add('hide');
+    });
+
+    showCurrentSlider();
+
+    // Test
+
+    axios.get('https://api.zadarma.com/v1/info/balance/', {headers: {'Authorization1': 'XMLHttpRequest'}})
+        .then(data => {
+            console.log(data);
+            // data.data.forEach(({ img, altimg, title, descr, price }) => {
+            //     new MenuCard(img, altimg, title, descr, price, '.menu__field .container').render();
+            });
+        
+
+
 });

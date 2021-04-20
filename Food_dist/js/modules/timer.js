@@ -1,8 +1,6 @@
-function timer() {
+function timer(id, deadline) {
 
     // Timer
-
-    const deadline = '2021-12-09';
 
     function getTimeRemaining(endtime) {
         // endtime – время окончания акции
@@ -60,8 +58,8 @@ function timer() {
 
     }
 
-    setClock('.timer', deadline);
+    setClock(id, deadline);
 
 }
 
-module.exports = timer;
+export default timer;

@@ -1,3 +1,5 @@
+// Прием модуль
+
 'use strict';
 
 const number = 1;
